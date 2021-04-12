@@ -1,0 +1,35 @@
+<template>
+	<section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+		aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+		<div class="slds-modal__container">
+			<header class="slds-modal__header">
+				<button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+					onclick={handleCancel} title="Close">
+					<lightning-icon variant="inverse" icon-name="utility:close" alternative-text="Close" title="Close">
+					</lightning-icon>
+					<span class="slds-assistive-text">Close</span>
+				</button>
+				<h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate">New Deploy Job</h2>
+			</header>
+			<div class="slds-modal__content slds-p-around_medium increase-height" id="modal-content-id-1">
+				<lightning-record-edit-form class="slds-p-top_x-large slds-p-bottom_x-large"
+					object-api-name="Deploy__c">
+					<c-lwc-lookup lookup-label="Environment" object-api-name="Environment__c"
+						icon-name="standard:account" onrecordselection={onEnvironmentSelection}></c-lwc-lookup>
+					<c-lwc-lookup lookup-label="Retrieve" object-api-name="Retrieve__c" icon-name="standard:account"
+						onrecordselection={onRetrieveSelection}></c-lwc-lookup>
+					<lightning-input-field onchange={handleTestLevel} field-name="TestLevel__c" required="true">
+					</lightning-input-field>
+				</lightning-record-edit-form>
+			</div>
+			<footer class="slds-modal__footer">
+				<button class="slds-button slds-button_neutral" onclick={handleCancel}>Cancel</button>
+				<button class="slds-button slds-button_brand" onclick={handleSave}>Save</button>
+			</footer>
+			<div if:true={loading} class="slds-modal__content slds-p-around_medium increase-height">
+				<lightning-spinner variant="brand" size="medium"></lightning-spinner>
+			</div>
+		</div>
+	</section>
+	<div class="slds-backdrop slds-backdrop_open"></div>
+</template>

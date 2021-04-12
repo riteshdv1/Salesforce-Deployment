@@ -1,0 +1,19 @@
+<template>
+	<div class="slds-card slds-p-around_x-large">
+		<ul class="slds-list_horizontal slds-m-around_small">
+			<li>
+				<lightning-button variant="brand" label="Refresh" icon-name="action:refresh" title="Refresh"
+					icon-position="right" onclick={handleRefresh}>
+				</lightning-button>
+			</li>
+			<li class="slds-p-left_x-large">
+				<lightning-button variant="brand" label="New" icon-name="action:new" title="New" icon-position="right"
+					onclick={handleNew}>
+				</lightning-button>
+			</li>
+		</ul>
+		<template if:true={showModal}>
+			<c-deploy-new oncancel={handleCancel}></c-deploy-new>
+		</template>
+	</div>
+</template>

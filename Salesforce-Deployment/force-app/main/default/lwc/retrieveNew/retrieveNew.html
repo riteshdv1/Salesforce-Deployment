@@ -1,0 +1,81 @@
+<template>
+	<section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+		aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+		<div class="slds-modal__container">
+			<header class="slds-modal__header">
+				<button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+					onclick={handleCancel} title="Close">
+					<lightning-icon variant="inverse" icon-name="utility:close" alternative-text="Close" title="Close">
+					</lightning-icon>
+					<span class="slds-assistive-text">Close</span>
+				</button>
+				<h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate">New Retrieve Job</h2>
+			</header>
+			<template if:true={firstPage}>
+				<div class="slds-modal__content slds-p-around_medium increase-height" id="modal-content-id-1">
+					<lightning-record-edit-form object-api-name="Retrieve__c">
+						<c-lwc-lookup lookup-label="Environment" object-api-name="Environment__c"
+							icon-name="standard:account" onrecordselection={onEnvironmentSelection}></c-lwc-lookup>
+						<label if:true={validationError} class="slds-text-color_error">{validationError}</label>
+					</lightning-record-edit-form>
+				</div>
+				<footer class="slds-modal__footer">
+					<button class="slds-button slds-button_neutral" onclick={handleCancel}>Cancel</button>
+					<button class="slds-button slds-button_brand" onclick={handleNext}>Next</button>
+				</footer>
+			</template>
+			<template if:false={firstPage}>
+				<div if:true={elements} class="slds-modal__content slds-p-around_medium increase-height"
+					id="modal-content-id-2">
+					<h1> Select Package contents</h1>
+					<p class="slds-p-around_medium">
+						<lightning-combobox name="Elements" label="Select an element" value={selectedElement}
+							options={elements} onchange={handleSelection}>
+						</lightning-combobox>
+					</p>
+					<lightning-layout class="slds-p-around_medium">
+						<lightning-layout-item size="5">
+							<div class="slds-p-bottom_medium">
+								<lightning-input type="search" name="search" placeholder="Search member"
+									onchange={handleMemberSearch}></lightning-input>
+							</div>
+							<ul if:true={members}>
+								<template for:each={members} for:item="member">
+									<li if:true={member.show}
+										class="slds-m-vertical_xx-small slds-p-horizontal_medium slds-box"
+										key={member.name} style={member.class} data-name={member.name}
+										onclick={handleMemberClick}>{member.name}</li>
+								</template>
+							</ul>
+						</lightning-layout-item>
+						<lightning-layout-item size="2"></lightning-layout-item>
+						<lightning-layout-item size="5">
+							<ul if:true={treeData}>
+								<template for:each={treeData} for:item="element">
+									<li if:true={element.isSelected} key={element.name}>
+										<b>{element.name}</b>
+										<ul>
+											<template for:each={element.members} for:item="member">
+												<li if:true={member.isSelected} class="slds-p-horizontal_medium"
+													key={member.name}>{member.name}</li>
+											</template>
+										</ul>
+									</li>
+								</template>
+							</ul>
+						</lightning-layout-item>
+					</lightning-layout>
+				</div>
+				<footer class="slds-modal__footer">
+					<button class="slds-button slds-button_neutral" onclick={handleCancel}>Cancel</button>
+					<button class="slds-button slds-button_brand" onclick={handlePrevious}>Previous</button>
+					<button class="slds-button slds-button_brand" onclick={handleSave}>Save</button>
+				</footer>
+			</template>
+			<div if:true={loading} class="slds-modal__content slds-p-around_medium increase-height">
+				<lightning-spinner variant="brand" size="medium"></lightning-spinner>
+			</div>
+		</div>
+	</section>
+	<div class="slds-backdrop slds-backdrop_open"></div>
+</template>

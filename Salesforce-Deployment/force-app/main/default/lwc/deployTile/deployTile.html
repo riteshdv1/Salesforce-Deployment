@@ -1,0 +1,41 @@
+<template>
+	<div if:true={deployRecord} class="slds-card slds-p-around_small">
+		<lightning-tile label={deployRecord.Name} type="media" href={deployRecordUrl}>
+			<lightning-icon slot="media" icon-name="action:upload"></lightning-icon>
+			<dl class="slds-dl_horizontal">
+				<dt class="slds-dl_horizontal__label">
+					<p class="slds-truncate" title="Company">{label.status}</p>
+				</dt>
+				<dd class="slds-dl_horizontal__detail slds-tile__meta">
+					<p class="slds-truncate" title="Salesforce">{deployRecord.Status__c}</p>
+				</dd>
+				<dt class="slds-dl_horizontal__label">
+					<p class="slds-truncate" title="Email">{label.createdDate}</p>
+				</dt>
+				<dd class="slds-dl_horizontal__detail slds-tile__meta">
+					<p class="slds-truncate" title="salesforce-ux@salesforce.com">{deployRecord.CreatedDate}</p>
+				</dd>
+				<dt class="slds-dl_horizontal__label">
+					<p class="slds-truncate" title="Email">{label.createdby}</p>
+				</dt>
+				<dd class="slds-dl_horizontal__detail slds-tile__meta">
+					<p class="slds-truncate" title={deployRecord.CreatedBy.Name}>{deployRecord.CreatedBy.Name}</p>
+				</dd>
+				<dt class="slds-dl_horizontal__label">
+					<p class="slds-truncate" title={label.environment}>{label.environment}</p>
+				</dt>
+				<dd class="slds-dl_horizontal__detail slds-tile__meta">
+					<p class="slds-truncate" title={deployRecord.Environment__r.Name}>{deployRecord.Environment__r.Name}
+					</p>
+				</dd>
+				<dt class="slds-dl_horizontal__label">
+					<p class="slds-truncate" title={label.environment}>{label.retrieveJob}</p>
+				</dt>
+				<dd class="slds-dl_horizontal__detail slds-tile__meta">
+					<p class="slds-truncate" title={deployRecord.Retrieve__r.Name}>{deployRecord.Retrieve__r.Name}</p>
+				</dd>
+			</dl>
+		</lightning-tile>
+	</div>
+	<c-navigate-to-record ongenerateurl={handleRetrieveUrl}></c-navigate-to-record>
+</template>

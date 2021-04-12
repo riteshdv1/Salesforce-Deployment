@@ -1,0 +1,35 @@
+<template>
+	<div if:true={retrieveRecord} class="slds-card slds-p-around_small">
+		<lightning-tile label={retrieveRecord.Name} type="media" href={retrieveRecordUrl}>
+			<lightning-icon slot="media" icon-name="action:download"></lightning-icon>
+			<dl class="slds-dl_horizontal">
+				<dt class="slds-dl_horizontal__label">
+					<p class="slds-truncate" title="Company">{label.status}</p>
+				</dt>
+				<dd class="slds-dl_horizontal__detail slds-tile__meta">
+					<p class="slds-truncate" title="Salesforce">{retrieveRecord.Status__c}</p>
+				</dd>
+				<dt class="slds-dl_horizontal__label">
+					<p class="slds-truncate" title="Email">{label.createdDate}</p>
+				</dt>
+				<dd class="slds-dl_horizontal__detail slds-tile__meta">
+					<p class="slds-truncate" title="salesforce-ux@salesforce.com">{retrieveRecord.CreatedDate}</p>
+				</dd>
+				<dt class="slds-dl_horizontal__label">
+					<p class="slds-truncate" title="Email">{label.createdby}</p>
+				</dt>
+				<dd class="slds-dl_horizontal__detail slds-tile__meta">
+					<p class="slds-truncate" title={retrieveRecord.CreatedBy.Name}>{retrieveRecord.CreatedBy.Name}</p>
+				</dd>
+				<dt class="slds-dl_horizontal__label">
+					<p class="slds-truncate" title={label.environment}>{label.environment}</p>
+				</dt>
+				<dd class="slds-dl_horizontal__detail slds-tile__meta">
+					<p class="slds-truncate" title={retrieveRecord.Environment__r.Name}>
+						{retrieveRecord.Environment__r.Name}</p>
+				</dd>
+			</dl>
+		</lightning-tile>
+	</div>
+	<c-navigate-to-record ongenerateurl={handleRetrieveUrl}></c-navigate-to-record>
+</template>

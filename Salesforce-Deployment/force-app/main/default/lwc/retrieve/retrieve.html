@@ -1,0 +1,19 @@
+<template>
+	<div class="slds-card slds-p-around_x-large">
+		<table if:true={paginationList} class="slds-table slds-table_cell-buffer slds-no-row-hover slds-table_bordered">
+			<tbody for:each={paginationList} for:item="retrieveRecord" key={retrieveRecord.Id}>
+				<tr class="slds-hint-parent" style={retrieveRecord.class} data-id={retrieveRecord.Id}
+					onclick={handleRecordClick}>
+					<td class="serial-number-col slds-truncate slds-cell-wrap">
+						<a href="#" tabindex="-1">{retrieveRecord.Name}</a>
+					</td>
+					<td></td>
+				</tr>
+			</tbody>
+		</table>
+		<template if:true={paginationList}>
+			<c-paginator class="slds-p-top_medium" onnext={handleNext} onprevious={handlePrevious}
+				current-page={currentPage} total-pages={totalPages}></c-paginator>
+		</template>
+	</div>
+</template>

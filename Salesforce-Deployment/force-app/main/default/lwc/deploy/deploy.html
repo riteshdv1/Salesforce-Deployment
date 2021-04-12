@@ -1,0 +1,27 @@
+<template>
+    <div class="slds-card slds-p-around_x-large">
+        <table if:true={paginationList} class="slds-table slds-table_cell-buffer slds-no-row-hover slds-table_bordered">
+            <tbody for:each={paginationList} for:item="deployRecord" key={deployRecord.Id}>
+                <tr class="slds-hint-parent" style={deployRecord.class} data-id={deployRecord.Id}
+                    onclick={handleRecordClick}>
+                    <td class="serial-number-col slds-truncate slds-cell-wrap">
+                        <a href="#" tabindex="-1">{deployRecord.Name}</a>
+                    </td>
+                    <td></td>
+                    <td if:true={deployRecord.inProgress} class="buttons-col slds-truncate slds-cell-wrap">
+                        <ul class="slds-list_horizontal slds-has-dividers_left">
+                            <li class="slds-p-left_small">
+                                <lightning-button-icon icon-name="action:reject" alternative-text="abort" size="large"
+                                    title="Abort" variant="bare" onclick={handleCancelDeploy}></lightning-button-icon>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <template if:true={paginationList}>
+            <c-paginator class="slds-p-top_medium" onnext={handleNext} onprevious={handlePrevious}
+                current-page={currentPage} total-pages={totalPages}></c-paginator>
+        </template>
+    </div>
+</template>

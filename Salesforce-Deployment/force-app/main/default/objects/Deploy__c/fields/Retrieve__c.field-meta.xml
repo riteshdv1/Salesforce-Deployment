@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Retrieve__c</fullName>
+    <externalId>false</externalId>
+    <label>Retrieve</label>
+    <referenceTo>Retrieve__c</referenceTo>
+    <relationshipLabel>Deploys</relationshipLabel>
+    <relationshipName>Deploys</relationshipName>
+    <relationshipOrder>0</relationshipOrder>
+    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>

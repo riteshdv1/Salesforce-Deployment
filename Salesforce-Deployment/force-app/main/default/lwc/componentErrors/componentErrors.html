@@ -1,0 +1,42 @@
+<template>
+	<lightning-card if:true={componentErrorList} variant="Narrow" icon-name="action:bug">
+		<h1 slot="title"> Component Error</h1>
+		<div class="slds-scrollable" style="height:200px;">
+			<template for:each={componentErrorList} for:item="componentError">
+				<dl class="slds-p-horizontal_large slds-p-vertical_medium slds-dl_horizontal"
+					key={componentError.problem}>
+					<dt class="slds-dl_horizontal__label">
+						<p>{label.type}</p>
+					</dt>
+					<dd class="slds-dl_horizontal__detail slds-tile__meta">
+						<p>{componentError.componentType}</p>
+					</dd>
+					<dt class="slds-dl_horizontal__label">
+						<p>{label.fileName}</p>
+					</dt>
+					<dd class="slds-dl_horizontal__detail slds-tile__meta">
+						<p>{componentError.fileName}</p>
+					</dd>
+					<dt class="slds-dl_horizontal__label">
+						<p>{label.line}</p>
+					</dt>
+					<dd class="slds-dl_horizontal__detail slds-tile__meta">
+						<p>{componentError.line}</p>
+					</dd>
+					<dt class="slds-dl_horizontal__label">
+						<p>{label.column}</p>
+					</dt>
+					<dd class="slds-dl_horizontal__detail slds-tile__meta">
+						<p>{componentError.column}</p>
+					</dd>
+					<dt class="slds-dl_horizontal__label">
+						<p>{label.error}</p>
+					</dt>
+					<dd class="slds-dl_horizontal__detail slds-tile__meta">
+						<p>{componentError.problem}</p>
+					</dd>
+				</dl>
+			</template>
+		</div>
+	</lightning-card>
+</template>

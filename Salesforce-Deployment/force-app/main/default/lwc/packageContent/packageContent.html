@@ -1,0 +1,17 @@
+<template>
+    <lightning-card if:true={packageContent} variant="Narrow" icon-name="action:description">
+        <h1 slot="title"> Package Content</h1>
+        <div class="slds-p-vertical_x-small" for:each={packageContent} for:item="content" key={content.name}>
+            <dl class="slds-p-horizontal_large slds-dl_horizontal">
+                <dt class="slds-dl_horizontal__label">
+                    <p>{content.name}</p>
+                </dt>
+                <dd class="slds-dl_horizontal__detail slds-tile__meta">
+                    <p for:each={content.members} for:item="member" key={member}>
+                        {member}
+                    </p>
+                </dd>
+            </dl>
+        </div>
+    </lightning-card>
+</template>

@@ -1,0 +1,14 @@
+.member-box{
+    border: .5px solid black;
+}
+
+.left-border{
+    border-left: 2px solid grey;
+}
+.increase-height{
+    height:80%;
+}
+
+li {
+    overflow-wrap:break-word;
+}
